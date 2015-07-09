@@ -24,12 +24,8 @@ public partial class _Default : System.Web.UI.Page
     {
         try
         {
-
             payU = new PayUMoneyHandler("ORDERID", "200", "FNAME", "EMAIL", "345345", "INFO");
-
-            //key.Value = payU.MERCHANT_KEY;
-
-            Button1_Click(sender, e);
+            GoToPayUMoney();
 
         }
         catch (Exception ex)
@@ -60,7 +56,7 @@ public partial class _Default : System.Web.UI.Page
 
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void GoToPayUMoney()
     {
         try
         { 
