@@ -24,7 +24,7 @@ public partial class _Default : System.Web.UI.Page
     {
         try
         {
-            payU = new PayUMoneyHandler("ORDERID", "200", "FNAME", "EMAIL", "345345", "INFO");
+            payU = new PayUMoneyHandler("ORDERID", "200", "Mayank", "mayankjhawar18@gmail.com", "9999999999", "INFO");
             GoToPayUMoney();
 
         }
