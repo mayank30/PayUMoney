@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Configuration;
 
 /// <summary>
 /// Summary description for PayUMoneyHandler
@@ -19,6 +20,7 @@ public class PayUMoneyHandler
     public String FAILURE_URL { get; set; }
     public string SERVICE_PROVIDER { get; set; }
     public String ORDER_ID { get; set; }
+    public String MERCHANT_KEY { get; set; }
 
     // These are optional parameter
     public string lastName { get; set; }
@@ -39,6 +41,7 @@ public class PayUMoneyHandler
 
 	public PayUMoneyHandler(String OrderId,String Amount,String FirstName, String Email, String Phone,String ProductInfo)
 	{
+        MERCHANT_KEY = ConfigurationManager.AppSettings["MERCHANT_KEY"];
         ORDER_ID = OrderId;
         AMOUNT = Amount;
         FIRSTNAME = FirstName;

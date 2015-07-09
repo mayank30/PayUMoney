@@ -9,7 +9,6 @@
     <form id="form1" runat="server" method="post">
     <input type="hidden" runat="server" id="key" name="key" />
     <input type="hidden" runat="server" id="hash" name="hash" />
-    <input type="hidden" runat="server" id="txnid" name="txnid" />
     <input type="hidden" runat="server" id="enforce_paymethod" name="enforce_paymethod" />
     </form>
 </body>

@@ -18,13 +18,14 @@ public partial class Default_New : System.Web.UI.Page
 {
     public string action1 = string.Empty;
     public string hash1 = string.Empty;
-    public string txnid1 = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         try
         {
             PayUMoneyHandler p = new PayUMoneyHandler("PO-00011", "100", "Mayank", "email@email.com", "34234234", "Apple");
+            key.Value = p.MERCHANT_KEY;
             GoToPayUMoney(p);
         }
         catch (Exception ex)
@@ -74,15 +75,15 @@ public partial class Default_New : System.Web.UI.Page
             hash_string = hash_string + payU.FIRSTNAME+"|";
             hash_string = hash_string + payU.EMAIL+"|";
             hash_string = hash_string + payU.PHONE+"|";
-            hash_string = hash_string + payU.lastName;
-            //hash_string = hash_string + payU.u3;
-            //hash_string = hash_string + payU.u4;
-            //hash_string = hash_string + payU.u5;
-            //hash_string = hash_string + payU.u5;
-            //hash_string = hash_string + payU.u5;
-            //hash_string = hash_string + payU.u5;
-            //hash_string = hash_string + payU.u5;
-            //hash_string = hash_string + payU.u5;
+            hash_string = hash_string + payU.lastName + "|";
+            hash_string = hash_string + payU.u3 + "|";
+            hash_string = hash_string + payU.u4 + "|";
+            hash_string = hash_string + payU.u5 + "|";
+            hash_string = hash_string + payU.u5 + "|";
+            hash_string = hash_string + payU.u5 + "|";
+            hash_string = hash_string + payU.u5 + "|";
+            hash_string = hash_string + payU.u5 + "|";
+            hash_string = hash_string + payU.u5;
 
             hash_string += ConfigurationManager.AppSettings["SALT"];// appending SALT
 
@@ -92,12 +93,10 @@ public partial class Default_New : System.Web.UI.Page
             if (!string.IsNullOrEmpty(hash1))
             {
                 hash.Value = hash1;
-                txnid.Value = txnid1;
-
                 System.Collections.Hashtable data = new System.Collections.Hashtable(); // adding values in gash table for data post
                 data.Add("hash", hash.Value);
                 data.Add("txnid", payU.ORDER_ID);
-                data.Add("key", key.Value);
+                data.Add("key", payU.MERCHANT_KEY);
                 string AmountForm = Convert.ToDecimal(payU.AMOUNT.Trim()).ToString("g29");// eliminating trailing zeros
                 data.Add("amount", AmountForm);
                 data.Add("firstname", payU.FIRSTNAME.Trim());
@@ -107,19 +106,19 @@ public partial class Default_New : System.Web.UI.Page
                 data.Add("surl", payU.SUCCESS_URL.Trim());
                 data.Add("furl", payU.FAILURE_URL.Trim());
                 data.Add("lastname", payU.lastName.Trim());
-                //data.Add("curl", payU.cancleUrl.Trim());
-                //data.Add("address1", payU.address1.Trim());
-                //data.Add("address2", payU.address2.Trim());
-                //data.Add("city", payU.city.Trim());
-                //data.Add("state", payU.state.Trim());
-                //data.Add("country", payU.country.Trim());
-                //data.Add("zipcode", payU.zip.Trim());
-                //data.Add("udf1", payU.u1.Trim());
-                //data.Add("udf2", payU.u2.Trim());
-                //data.Add("udf3", payU.u3.Trim());
-                //data.Add("udf4", payU.u4.Trim());
-                //data.Add("udf5", payU.u5.Trim());
-                //data.Add("pg", payU.pg.Trim());
+                data.Add("curl", payU.cancleUrl.Trim());
+                data.Add("address1", payU.address1.Trim());
+                data.Add("address2", payU.address2.Trim());
+                data.Add("city", payU.city.Trim());
+                data.Add("state", payU.state.Trim());
+                data.Add("country", payU.country.Trim());
+                data.Add("zipcode", payU.zip.Trim());
+                data.Add("udf1", payU.u1.Trim());
+                data.Add("udf2", payU.u2.Trim());
+                data.Add("udf3", payU.u3.Trim());
+                data.Add("udf4", payU.u4.Trim());
+                data.Add("udf5", payU.u5.Trim());
+                data.Add("pg", payU.pg.Trim());
                 data.Add("service_provider", payU.SERVICE_PROVIDER.Trim());
 
 
